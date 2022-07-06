@@ -1,0 +1,8 @@
+---
+- name: verifying the role concept
+  hosts: all
+  become: true
+  roles: 
+   - role1 
+   - role2
+...    

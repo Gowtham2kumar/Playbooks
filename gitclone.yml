@@ -1,0 +1,13 @@
+---
+- name: Cloning the repo
+  hosts: all
+  become: true
+  vars_files:
+  - vault.yml 
+  tasks:
+  - name: Cloning the repo
+    git:
+      repo: https://Gowtham2kumar:{{git_password}}@github.com/Gowtham2kumar/private.git
+      dest: /home/ansadmin/private
+...
+
