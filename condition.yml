@@ -1,0 +1,20 @@
+---
+- name: Creating conitional ansible
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Installing httpd
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - git
+      - httpd
+      - maven
+      - wget
+      - tree
+
+...        
+
+

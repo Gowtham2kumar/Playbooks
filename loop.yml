@@ -1,0 +1,14 @@
+---
+- name: Creating conitional ansible
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Installing httpd
+    yum:
+      name: ['git' , 'maven' , 'tree']
+      state: installed
+
+...        
+
+

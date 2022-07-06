@@ -1,0 +1,38 @@
+---
+- name: Installing tomcat setup
+  hosts: n1
+  become: true
+
+  tasks:
+  - name: Installing tomcat 
+    get_url:
+     url:  https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.94/bin/apache-tomcat-7.0.94.tar.gz
+     dest: /home/ansadmin/
+     
+  - name: archiving the tomcat
+    unarchive: 
+     src: /home/ansadmin/apache-tomcat-7.0.94.tar.gz
+     dest: /home/ansadmin/ 
+     remote_src: yes
+   
+  - name: Changing the permissions for tomcat file
+    file:
+     path: /home/ansadmin/apache-tomcat-7.0.94
+     mode: 0755
+
+  - name: Creating the sym link for tomcat
+    file:
+     src: /home/ansadmin/apache-tomcat-7.0.94/bin/startup.sh
+     dest: /usr/local/bin/tomcatup  
+     state: link
+
+  - name: Creating link for stopping the tomcat
+    file:
+      src: /home/ansadmin/apache-tomcat-7.0.94/bin/shutdown.sh
+      dest: /usr/local/bin/tomcatdown 
+      state: link
+
+  - name: starting the services
+    shell: nohup /usr/local/bin/tomcatup
+...
+

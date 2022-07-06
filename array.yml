@@ -1,0 +1,19 @@
+---
+- name: Creating conitional ansible
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Installing httpd
+    yum:
+      name: "{{ item.pkg }}"
+      state: "{{ item.setup }}"
+    loop:
+    - { pkg: 'git' , setup: 'installed' }
+    - { pkg: 'maven' , setup: 'installed' }
+
+
+
+...        
+
+
